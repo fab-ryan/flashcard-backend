@@ -22,7 +22,7 @@ export const AuthMutation = extendType({
                 if (!valid) {
                     throw new Error("Invalid Password");
                 }
-                const token = jwt.sign({ userId: user.id }, APP_SECRET);
+                const token = jwt.sign({ userId: user.id, role: user.role }, APP_SECRET);
                 return { token, user };
             },
         });
@@ -34,6 +34,7 @@ export const AuthMutation = extendType({
                 firstName: nonNull(stringArg()),
                 lastName: nonNull(stringArg()),
                 userName: nonNull(stringArg()),
+                role: nonNull(stringArg()),
             },
             async resolve(parent, args, context, info) {
                 const { email, password, firstName, lastName, userName } = args;
@@ -48,10 +49,11 @@ export const AuthMutation = extendType({
                         firstName,
                         lastName,
                         userName,
+                        role: args.role,
                     }
                 })
 
-                const token = jwt.sign({ userId: user.id }, APP_SECRET);
+                const token = jwt.sign({ userId: user.id, role: user.role }, APP_SECRET);
                 return { token, user };
             }
         })

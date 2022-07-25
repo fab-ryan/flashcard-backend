@@ -4,7 +4,7 @@ export const AuthQuery = extendType({
     definition(m) {
         m.nonNull.list.nonNull.field("allUsers", {
             type: "User",
-            async resolve(parent, args, context, info) {
+            resolve: async (parent, args, context, info) => {
                 const userId = context.userId;
                 if (!userId) {
                     throw new Error("Not Authorized");

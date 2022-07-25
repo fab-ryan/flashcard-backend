@@ -32,7 +32,7 @@ export const CategoryMutation = extendType({
                 categoryName: nonNull(stringArg()),
                 categoryDescription: nonNull(stringArg()),
             },
-            async resolve(parent, args, context, info) {
+            resolve: async (parent, args, context, info) => {
                 const { categoryName, categoryDescription, id } = args;
                 const userId = context.userId;
 

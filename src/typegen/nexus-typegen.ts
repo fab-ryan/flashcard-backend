@@ -28,6 +28,10 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Answer: { // root type
+    answer?: string | null; // String
+    id?: string | null; // String
+  }
   AuthPayload: { // root type
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
@@ -39,6 +43,10 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   Query: {};
+  Question: { // root type
+    id: string; // String!
+    question: string; // String!
+  }
   User: { // root type
     email: string; // String!
     firstName: string; // String!
@@ -60,6 +68,11 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Answer: { // field return type
+    answer: string | null; // String
+    id: string | null; // String
+    question: NexusGenRootTypes['Question']; // Question!
+  }
   AuthPayload: { // field return type
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
@@ -71,15 +84,28 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User']; // User!
   }
   Mutation: { // field return type
+    createAnswer: NexusGenRootTypes['Answer']; // Answer!
     createCategory: NexusGenRootTypes['Category'] | null; // Category
+    createQuestion: NexusGenRootTypes['Question']; // Question!
+    deleteAnswer: NexusGenRootTypes['Answer']; // Answer!
     deleteCategory: NexusGenRootTypes['Category'] | null; // Category
+    deleteQuestion: NexusGenRootTypes['Question']; // Question!
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    updateAnswer: NexusGenRootTypes['Answer']; // Answer!
     updateCategory: NexusGenRootTypes['Category'] | null; // Category
+    updateQuestion: NexusGenRootTypes['Question']; // Question!
   }
   Query: { // field return type
+    allAnswer: NexusGenRootTypes['Answer'][]; // [Answer!]!
     allCategories: NexusGenRootTypes['Category'][]; // [Category!]!
+    allQuestion: NexusGenRootTypes['Question'][]; // [Question!]!
     allUsers: NexusGenRootTypes['User'][]; // [User!]!
+  }
+  Question: { // field return type
+    category: NexusGenRootTypes['Category']; // Category!
+    id: string; // String!
+    question: string; // String!
   }
   User: { // field return type
     email: string; // String!
@@ -92,6 +118,11 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Answer: { // field return type name
+    answer: 'String'
+    id: 'String'
+    question: 'Question'
+  }
   AuthPayload: { // field return type name
     token: 'String'
     user: 'User'
@@ -103,15 +134,28 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   Mutation: { // field return type name
+    createAnswer: 'Answer'
     createCategory: 'Category'
+    createQuestion: 'Question'
+    deleteAnswer: 'Answer'
     deleteCategory: 'Category'
+    deleteQuestion: 'Question'
     login: 'AuthPayload'
     signup: 'AuthPayload'
+    updateAnswer: 'Answer'
     updateCategory: 'Category'
+    updateQuestion: 'Question'
   }
   Query: { // field return type name
+    allAnswer: 'Answer'
     allCategories: 'Category'
+    allQuestion: 'Question'
     allUsers: 'User'
+  }
+  Question: { // field return type name
+    category: 'Category'
+    id: 'String'
+    question: 'String'
   }
   User: { // field return type name
     email: 'String'
@@ -125,11 +169,25 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createAnswer: { // args
+      answer: string; // String!
+      question: string; // String!
+    }
     createCategory: { // args
       categoryDescription: string; // String!
       categoryName: string; // String!
     }
+    createQuestion: { // args
+      category: string; // String!
+      question: string; // String!
+    }
+    deleteAnswer: { // args
+      id: string; // String!
+    }
     deleteCategory: { // args
+      id: string; // String!
+    }
+    deleteQuestion: { // args
       id: string; // String!
     }
     login: { // args
@@ -143,10 +201,25 @@ export interface NexusGenArgTypes {
       password: string; // String!
       userName: string; // String!
     }
+    updateAnswer: { // args
+      answer: string; // String!
+      id: string; // String!
+    }
     updateCategory: { // args
       categoryDescription: string; // String!
       categoryName: string; // String!
       id: string; // String!
+    }
+    updateQuestion: { // args
+      category: string; // String!
+      id: string; // String!
+      question: string; // String!
+    }
+  }
+  Query: {
+    allAnswer: { // args
+      skip?: number | null; // Int
+      take: number | null; // Int
     }
   }
 }

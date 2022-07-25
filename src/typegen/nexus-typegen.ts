@@ -37,6 +37,7 @@ export interface NexusGenObjects {
     categoryName: string; // String!
     id: string; // String!
   }
+  Mutation: {};
   Query: {};
   User: { // root type
     email: string; // String!
@@ -67,10 +68,16 @@ export interface NexusGenFieldTypes {
     categoryDescription: string; // String!
     categoryName: string; // String!
     id: string; // String!
-    user: NexusGenRootTypes['User'][]; // [User!]!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Mutation: { // field return type
+    createCategory: NexusGenRootTypes['Category'] | null; // Category
+    login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
   }
   Query: { // field return type
-    ok: boolean; // Boolean!
+    allCategories: NexusGenRootTypes['Category'][]; // [Category!]!
+    allUsers: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
     email: string; // String!
@@ -93,8 +100,14 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     user: 'User'
   }
+  Mutation: { // field return type name
+    createCategory: 'Category'
+    login: 'AuthPayload'
+    signup: 'AuthPayload'
+  }
   Query: { // field return type name
-    ok: 'Boolean'
+    allCategories: 'Category'
+    allUsers: 'User'
   }
   User: { // field return type name
     email: 'String'
@@ -107,6 +120,23 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createCategory: { // args
+      categoryDescription: string; // String!
+      categoryName: string; // String!
+    }
+    login: { // args
+      email: string; // String!
+      password: string; // String!
+    }
+    signup: { // args
+      email: string; // String!
+      firstName: string; // String!
+      lastName: string; // String!
+      password: string; // String!
+      userName: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {

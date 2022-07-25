@@ -16,8 +16,10 @@ type Category {
 
 type Mutation {
   createCategory(categoryDescription: String!, categoryName: String!): Category
+  deleteCategory(id: String!): Category
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, firstName: String!, lastName: String!, password: String!, userName: String!): AuthPayload
+  updateCategory(categoryDescription: String!, categoryName: String!, id: String!): Category
 }
 
 type Query {

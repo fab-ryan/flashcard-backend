@@ -14,8 +14,13 @@ type Category {
   user: [User!]!
 }
 
+type Mutation {
+  login(email: String!, password: String!): AuthPayload
+  signup(email: String!, firstName: String!, lastName: String!, password: String!, userName: String!): AuthPayload
+}
+
 type Query {
-  ok: Boolean!
+  allUsers: [User!]!
 }
 
 type User {

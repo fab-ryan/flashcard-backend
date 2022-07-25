@@ -6,12 +6,13 @@ export const Category = objectType({
         t.nonNull.string("id")
         t.nonNull.string("categoryName")
         t.nonNull.string("categoryDescription")
-        t.nonNull.list.nonNull.field("user", {
+        t.nonNull.field("user", {
             type: "User",
             resolve(parent, args, context, info) {
-                return context.prisma.user.findUnique({
+                return context.prisma.category.findUnique({
                     where: { id: parent.id }
-                }).createdBy()
+                })
+                .createdBy();
             }
         })
     }

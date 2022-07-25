@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --transpile-only --watch --no-notify --exit-child server.ts ",
-    "generate": "ts-node --transpile-only src/schema/index.ts"
+    "generate": "ts-node --transpile-only src/schema/index.ts",
+    "compile": "ts-node --transpile-only src/schema"
   },
   "author": "fabrice",
   "license": "ISC",

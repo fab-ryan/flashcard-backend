@@ -11,7 +11,8 @@ export const Question = objectType({
                     where: { id: parent.id }
                 }).category();
             }
-        })
+        });
+
 
 
     }

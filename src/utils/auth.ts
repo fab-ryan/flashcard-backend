@@ -5,6 +5,7 @@ export const APP_SECRET: any = process.env.APP_SECRET;
 
 export interface AuthTokenPayload {
     userId: string;
+    role: string;
 }
 export function decodeAuthHeader(authHeader: string): AuthTokenPayload {
     const token = authHeader.split(" ")[1];

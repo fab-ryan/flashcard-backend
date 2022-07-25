@@ -68,6 +68,9 @@ export const CategoryMutation = extendType({
                 if (!userId) {
                     throw new Error("Not Authorized");
                 }
+                if (context?.role !== "admin") {
+                    throw new Error("Not Authorized")
+                }
                 const categoryFound = await context.prisma.category.findUnique({
                     where: { id }
                 })

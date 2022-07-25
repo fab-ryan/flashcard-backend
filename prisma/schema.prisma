@@ -14,9 +14,11 @@ model User {
   id         String     @id @default(uuid())
   firstName  String
   lastName   String
+  role       String    @default("user")
   userName   String     @unique
   email      String     @unique
   password   String
+
   categories Category[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @default(now())

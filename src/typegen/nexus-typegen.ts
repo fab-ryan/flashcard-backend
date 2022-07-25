@@ -53,6 +53,7 @@ export interface NexusGenObjects {
     id: string; // String!
     lastName: string; // String!
     password: string; // String!
+    role: string; // String!
     userName: string; // String!
   }
 }
@@ -97,6 +98,7 @@ export interface NexusGenFieldTypes {
     updateQuestion: NexusGenRootTypes['Question']; // Question!
   }
   Query: { // field return type
+    AllAnswerByQuestion: NexusGenRootTypes['Answer'][]; // [Answer!]!
     allAnswer: NexusGenRootTypes['Answer'][]; // [Answer!]!
     allCategories: NexusGenRootTypes['Category'][]; // [Category!]!
     allQuestion: NexusGenRootTypes['Question'][]; // [Question!]!
@@ -113,6 +115,7 @@ export interface NexusGenFieldTypes {
     id: string; // String!
     lastName: string; // String!
     password: string; // String!
+    role: string; // String!
     userName: string; // String!
   }
 }
@@ -147,6 +150,7 @@ export interface NexusGenFieldTypeNames {
     updateQuestion: 'Question'
   }
   Query: { // field return type name
+    AllAnswerByQuestion: 'Answer'
     allAnswer: 'Answer'
     allCategories: 'Category'
     allQuestion: 'Question'
@@ -163,6 +167,7 @@ export interface NexusGenFieldTypeNames {
     id: 'String'
     lastName: 'String'
     password: 'String'
+    role: 'String'
     userName: 'String'
   }
 }
@@ -199,6 +204,7 @@ export interface NexusGenArgTypes {
       firstName: string; // String!
       lastName: string; // String!
       password: string; // String!
+      role: string; // String!
       userName: string; // String!
     }
     updateAnswer: { // args
@@ -217,6 +223,11 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    AllAnswerByQuestion: { // args
+      questionId: string; // String!
+      skip?: number | null; // Int
+      take: number | null; // Int
+    }
     allAnswer: { // args
       skip?: number | null; // Int
       take: number | null; // Int

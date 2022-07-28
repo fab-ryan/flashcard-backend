@@ -3,8 +3,8 @@
 
 
 type Answer {
-  answer: String
-  id: String
+  answer: String!
+  id: String!
   question: Question!
 }
 
@@ -16,7 +16,7 @@ type AuthPayload {
 type Category {
   categoryDescription: String!
   categoryName: String!
-  id: String!
+  id: ID!
   user: User!
 }
 
@@ -29,9 +29,7 @@ type Mutation {
   deleteQuestion(id: String!): Question!
   login(email: String!, password: String!): AuthPayload
   signup(email: String!, firstName: String!, lastName: String!, password: String!, role: String!, userName: String!): AuthPayload
-  updateAnswer(answer: String!, id: String!): Answer!
   updateCategory(categoryDescription: String!, categoryName: String, id: String!): Category
-  updateQuestion(category: String!, id: String!, question: String!): Question!
 }
 
 type Query {
@@ -44,7 +42,7 @@ type Query {
 
 type Question {
   category: Category!
-  id: String!
+  id: ID!
   question: String!
 }
 

@@ -10,7 +10,7 @@
     "compile": "ts-node --transpile-only src/schema",
     "migrate:deploy": "prisma migrate deploy",
     "build": "prisma generate && npm run generate && tsc",
-    "start": "node dist/src/index.js"
+    "start": "node dist/server.js"
   },
   "author": "fabrice",
   "license": "ISC",

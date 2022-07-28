@@ -213,7 +213,7 @@ export interface NexusGenArgTypes {
     }
     updateCategory: { // args
       categoryDescription: string; // String!
-      categoryName: string; // String!
+      categoryName?: string | null; // String
       id: string; // String!
     }
     updateQuestion: { // args

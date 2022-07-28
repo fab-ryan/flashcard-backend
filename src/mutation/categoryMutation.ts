@@ -48,7 +48,7 @@ export const CategoryMutation = extendType({
                 const updatedCategory = await context.prisma.category.update({
                     where: { id },
                     data: {
-                        categoryName,
+                        categoryName: categoryName || updatedFound.categoryName,
                         categoryDescription,
                         createdBy: { connect: { id: userId } }
                     }

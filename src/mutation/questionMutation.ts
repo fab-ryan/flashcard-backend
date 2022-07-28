@@ -33,39 +33,40 @@ export const QuestionMutation = extendType({
             }
 
         });
-        t.nonNull.field("updateQuestion", {
-            type: "Question",
-            args: {
-                question: nonNull(stringArg()),
-                id: nonNull(stringArg()),
-                category: nonNull(stringArg())
-            },
-            resolve: async (parent, args, context, info) => {
-                const { question, id, category } = args;
-                const userId = context.userId;
-                const questionFound = await context.prisma.question.findUnique({
-                    where: { id }
-                })
-                if (!questionFound) throw new Error("no Question found")
-                if (!userId) {
-                    throw new Error("Not Authorized");
-                }
-                const updatequestion = await context.prisma.question.update({
-                    data: {
-                        question,
-                        category: {
-                            connect: {
-                                id: category
-                            }
-                        }
-                    }
-                })
-                return {
-                    updatequestion
-                }
-            }
+        // t.nonNull.field("updateQuestion", {
+        //     type: "Question",
+        //     args: {
+        //         question: nonNull(stringArg()),
+        //         id: nonNull(stringArg()),
+        //         category: nonNull(stringArg())
+        //     },
+        //     resolve: async (parent, args, context, info) => {
+        //         const { question, id, category } = args;
+        //         const userId = context.userId;
+        //         const questionFound = await context.prisma.question.findUnique({
+        //             where: { id }
+        //         })
+        //         if (!questionFound) throw new Error("no Question found")
+        //         if (!userId) {
+        //             throw new Error("Not Authorized");
+        //         }
+        //         const updatequestion = await context.prisma.question.update({
+        //             where: { id },
+        //             data: {
+        //                 question: question || questionFound.question,
+        //                 category: {
+        //                     connect: {
+        //                         id: category
+        //                     }
+        //                 }
+        //             }
+        //         })
+        //         return {
+        //             updatequestion
+        //         }
+        //     }
 
-        }),
+        // }),
 
             t.nonNull.field("deleteQuestion", {
                 type: "Question",

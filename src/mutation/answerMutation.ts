@@ -14,9 +14,8 @@ export const answerMutation = extendType({
                 const creatingAnswer = await context.prisma.answer.create({
                     data: {
                         answer,
-                        questionBy: {
-                            connect: { id: question }
-                        }
+                        questionBy: { connect: { id: question } }
+
 
                     }
                 })
@@ -25,31 +24,33 @@ export const answerMutation = extendType({
             }
 
         })
-        // t.nonNull.field("updateAnswer", {
-        //     type: "Answer",
-        //     args: {
-        //         answer: nonNull(stringArg()),
-        //         id: nonNull(stringArg()),
-        //     },
-        //     resolve: async (parent, args, context, info) => {
-        //         const { answer, id } = args;
-        //         const userId = context.userId;
-        //         if (!userId) {
-        //             throw new Error("Not Authorized");
-        //         }
-        //         const answerFound = await context.prisma.answer.findUnique({
-        //             where: { id }
-        //         })
-        //         if (!answerFound) throw new Error("Answer not Found");
-        //         const updateAnswer = await context.prisma.answer.update({
-        //             where: { id },
-        //             data: {
-        //                 answer,
-        //             }
-        //         }).questionBy()
-        //         return updateAnswer;
-        //     }
-        // }),
+        t.nonNull.field("updateAnswer", {
+            type: "Answer",
+            args: {
+                answer: nonNull(stringArg()),
+                id: nonNull(stringArg()),
+            },
+            resolve: async (parent, args, context, info) => {
+                const { answer, id } = args;
+                const userId = context.userId;
+                if (!userId) {
+                    throw new Error("Not Authorized");
+                }
+                const answerFound = await context.prisma.answer.findUnique({
+                    where: { id }
+                })
+                if (!answerFound) throw new Error("Answer not Found");
+                const updateAnswer = await context.prisma.answer.update({
+                    where: { id },
+                    data: {
+                        answer: answer || answerFound.answer,
+                    }
+
+
+                })
+                return updateAnswer;
+            }
+        }),
             t.nonNull.field("deleteAnswer", {
                 type: "Answer",
                 args: {

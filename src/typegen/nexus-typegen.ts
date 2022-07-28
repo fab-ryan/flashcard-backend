@@ -30,7 +30,7 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   Answer: { // root type
     answer: string; // String!
-    id: string; // String!
+    id: string; // ID!
   }
   AuthPayload: { // root type
     token?: string | null; // String
@@ -71,7 +71,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 export interface NexusGenFieldTypes {
   Answer: { // field return type
     answer: string; // String!
-    id: string; // String!
+    id: string; // ID!
     question: NexusGenRootTypes['Question']; // Question!
   }
   AuthPayload: { // field return type
@@ -93,6 +93,7 @@ export interface NexusGenFieldTypes {
     deleteQuestion: NexusGenRootTypes['Question']; // Question!
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
+    updateAnswer: NexusGenRootTypes['Answer']; // Answer!
     updateCategory: NexusGenRootTypes['Category'] | null; // Category
   }
   Query: { // field return type
@@ -121,7 +122,7 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   Answer: { // field return type name
     answer: 'String'
-    id: 'String'
+    id: 'ID'
     question: 'Question'
   }
   AuthPayload: { // field return type name
@@ -143,6 +144,7 @@ export interface NexusGenFieldTypeNames {
     deleteQuestion: 'Question'
     login: 'AuthPayload'
     signup: 'AuthPayload'
+    updateAnswer: 'Answer'
     updateCategory: 'Category'
   }
   Query: { // field return type name
@@ -202,6 +204,10 @@ export interface NexusGenArgTypes {
       password: string; // String!
       role: string; // String!
       userName: string; // String!
+    }
+    updateAnswer: { // args
+      answer: string; // String!
+      id: string; // String!
     }
     updateCategory: { // args
       categoryDescription: string; // String!

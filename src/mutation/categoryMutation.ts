@@ -29,7 +29,7 @@ export const CategoryMutation = extendType({
             type: "Category",
             args: {
                 id: nonNull(stringArg()),
-                categoryName: nonNull(stringArg()),
+                categoryName: stringArg(),
                 categoryDescription: nonNull(stringArg()),
             },
             resolve: async (parent, args, context, info) => {

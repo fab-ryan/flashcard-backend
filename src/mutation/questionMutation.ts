@@ -68,28 +68,28 @@ export const QuestionMutation = extendType({
 
         // }),
 
-            t.nonNull.field("deleteQuestion", {
-                type: "Question",
-                args: {
-                    id: nonNull(stringArg()),
-                },
-                async resolve(parent, args, context, info) {
-                    const { id } = args;
+        t.nonNull.field("deleteQuestion", {
+            type: "Question",
+            args: {
+                id: nonNull(stringArg()),
+            },
+            async resolve(parent, args, context, info) {
+                const { id } = args;
 
-                    const userId = context.userId;
-                    if (!userId) {
-                        throw new Error("Not Authorized");
-                    }
-                    const questionFound = await context.prisma.question.findUnique({
-                        where: { id }
-                    })
-                    if (!questionFound) { throw new Error("Question not found") }
-                    const deletedQuestion = await context.prisma.question.delete({
-                        where: { id },
-                    })
-                    return deletedQuestion;
+                const userId = context.userId;
+                if (!userId) {
+                    throw new Error("Not Authorized");
                 }
+                const questionFound = await context.prisma.question.findUnique({
+                    where: { id }
+                })
+                if (!questionFound) { throw new Error("Question not found") }
+                const deletedQuestion = await context.prisma.question.delete({
+                    where: { id },
+                })
+                return deletedQuestion;
+            }
 
-            })
+        })
     }
 })

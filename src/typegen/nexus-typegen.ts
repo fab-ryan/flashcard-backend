@@ -95,6 +95,7 @@ export interface NexusGenFieldTypes {
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     updateAnswer: NexusGenRootTypes['Answer']; // Answer!
     updateCategory: NexusGenRootTypes['Category'] | null; // Category
+    updateQuestion: NexusGenRootTypes['Question']; // Question!
   }
   Query: { // field return type
     AllAnswerByQuestion: NexusGenRootTypes['Answer'][]; // [Answer!]!
@@ -146,6 +147,7 @@ export interface NexusGenFieldTypeNames {
     signup: 'AuthPayload'
     updateAnswer: 'Answer'
     updateCategory: 'Category'
+    updateQuestion: 'Question'
   }
   Query: { // field return type name
     AllAnswerByQuestion: 'Answer'
@@ -213,6 +215,11 @@ export interface NexusGenArgTypes {
       categoryDescription: string; // String!
       categoryName?: string | null; // String
       id: string; // String!
+    }
+    updateQuestion: { // args
+      category: string; // String!
+      id: string; // String!
+      question: string; // String!
     }
   }
   Query: {

@@ -31,6 +31,7 @@ type Mutation {
   signup(email: String!, firstName: String!, lastName: String!, password: String!, role: String!, userName: String!): AuthPayload
   updateAnswer(answer: String!, id: String!): Answer!
   updateCategory(categoryDescription: String!, categoryName: String, id: String!): Category
+  updateQuestion(category: String!, id: String!, question: String!): Question!
 }
 
 type Query {
